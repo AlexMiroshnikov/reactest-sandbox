@@ -1,2 +1,4 @@
 .idea
 firebase.json
+public/react/build
+public/react/min.js
