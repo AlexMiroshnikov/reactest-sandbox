@@ -15,7 +15,10 @@ var FrmEntryNew = React.createClass({
         });
 
         Dispatcher.sub(AppEvent.SAVING_OK, this, function(_this, payload){
-            _this.props.mainobj.props.entries.push(payload);
+            console.log('existing:');
+            console.log(_this.props.mainobj.props.entries);
+            /*_this.props.mainobj.props.entries.push(payload);*/
+            _this.props.mainobj.props.entries[_this.props.mainobj.props.entries.length] = payload;
             _this.props.mainobj.forceUpdate();
             _this.setState({display: false});
             React.findDOMNode(_this.refs['input']).value = '';

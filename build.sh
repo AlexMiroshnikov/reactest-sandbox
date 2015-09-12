@@ -1,6 +1,8 @@
 jsx --no-cache-dir -ex jsx ./public/react/app ./public/react/build \
 && \
 cat \
+./public/react/app/appconfig.js \
+./public/react/app/appfirebase.js \
 ./public/react/app/appevent.js \
 ./public/react/app/dispatcher.js \
 ./public/react/app/model/ModelEntry.js \

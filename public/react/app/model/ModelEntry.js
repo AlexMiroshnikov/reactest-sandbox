@@ -2,7 +2,7 @@ var ModelEntry = {
     factory: function(component){
         var _errors = [],
             _props = {
-                value: component.getValue()
+                value: (component ? component.getValue() : null)
             };
 
         return {
@@ -17,7 +17,7 @@ var ModelEntry = {
                 return _errors;
             },
             save: function(){
-
+                AppFirebase.db(AppConfig.firebase.dbs.reactestDevEntries).set({value: _props.value});
             },
             prop: function(key, value){
                 if (typeof(value) == 'undefined') {
@@ -31,8 +31,13 @@ var ModelEntry = {
     saveHandler: function(component){
         var model = this.factory(component);
         if (model.isValid()){
-            model.save();
-            Dispatcher.fire(AppEvent.SAVING_OK, model);
+            try {
+                model.save();
+                Dispatcher.fire(AppEvent.SAVING_OK, model);
+            } catch (e) {
+                Dispatcher.fire(AppEvent.SAVING_ERROR, model);
+                return false;
+            }
         } else {
             Dispatcher.fire(AppEvent.SAVING_ERROR, model);
             return false;
