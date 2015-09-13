@@ -55,21 +55,14 @@ var AppFirebase = function(url){
                     refIncrements.update(inc);
                 }
 
-                obj.id = inc[tableName];
-                var ref = refObjs.push(obj, function(error){
-                    console.log('onPush, this:');
-                    console.log(this);
+                var objData = obj.prop();
+                objData.id = inc[tableName];
+                var ref = refObjs.push(objData, function(error){
                     if (!error){
-                        console.log('no error, proceed, obj:');
-                        /*obj.prop();*/
-                        console.log(obj);
-                        console.log('ref:');
-                        console.log(ref.key());
+                        obj.prop('uuid', ref.key());
                     }
                     onFinish && onFinish(error);
                 });
-                console.log('ref after call:');
-                console.log(ref);
             });
         },
         delete: function(dbName, tableName, obj, onFinish){

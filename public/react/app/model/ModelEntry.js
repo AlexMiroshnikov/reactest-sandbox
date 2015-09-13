@@ -20,18 +20,20 @@ var ModelEntry = {
                 AppFirebase.insertInc(
                     AppConfig.firebase.dbs.reactestDev,
                     AppConfig.firebase.dbs.reactestDevEntries,
-                    {value: _props.value}
+                    this
                 );
             },
             prop: function(key, value){
-                  if (typeof(value) == 'undefined') {
-                      return _props[key];
+                if (typeof(key) == 'undefined') {
+                    return _props;
+                }
+                if (typeof(value) == 'undefined') {
+                    return _props[key];
                 }
                 _props[key] = value;
                 return this;
             },
             delete: function(){
-                /*AppFirebase.db(AppConfig.firebase.reactestDevEntries).*/
                 AppFirebase.delete(
                     AppConfig.firebase.dbs.reactestDev,
                     AppConfig.firebase.dbs.reactestDevEntries,

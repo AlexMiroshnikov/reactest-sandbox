@@ -2,8 +2,6 @@ var Modal = React.createClass({
     _action: null,
     componentDidMount: function(){
         Dispatcher.sub(AppEvent.CLICK_DELETE_ENTRY, this, function(_this, payload){
-            console.log('>caught delete');
-            console.log(payload);
             _this.setState({message: 'Please confirm deleting'});
             _this._action = function(){
                 payload.delete();
