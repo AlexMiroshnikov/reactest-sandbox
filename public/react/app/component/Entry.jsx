@@ -1,6 +1,7 @@
 var Entry = React.createClass({
-    handleClickDelete: function(){
-
+    handleClickDelete: function(e){
+        e.preventDefault();
+        Dispatcher.fire(AppEvent.CLICK_DELETE_ENTRY, this.props.obj);
     },
     render: function(){
         return (

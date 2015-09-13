@@ -56,10 +56,24 @@ var AppFirebase = function(url){
                 }
 
                 obj.id = inc[tableName];
-                refObjs.push(obj, function(error){
+                var ref = refObjs.push(obj, function(error){
+                    console.log('onPush, this:');
+                    console.log(this);
+                    if (!error){
+                        console.log('no error, proceed, obj:');
+                        /*obj.prop();*/
+                        console.log(obj);
+                        console.log('ref:');
+                        console.log(ref.key());
+                    }
                     onFinish && onFinish(error);
                 });
+                console.log('ref after call:');
+                console.log(ref);
             });
+        },
+        delete: function(dbName, tableName, obj, onFinish){
+            this.db([dbName, tableName, obj.prop('uuid')].join('/')).set(null);
         }
     };
 }(AppConfig.firebase.url);

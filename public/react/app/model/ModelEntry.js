@@ -29,6 +29,14 @@ var ModelEntry = {
                 }
                 _props[key] = value;
                 return this;
+            },
+            delete: function(){
+                /*AppFirebase.db(AppConfig.firebase.reactestDevEntries).*/
+                AppFirebase.delete(
+                    AppConfig.firebase.dbs.reactestDev,
+                    AppConfig.firebase.dbs.reactestDevEntries,
+                    this
+                );
             }
         };
     },

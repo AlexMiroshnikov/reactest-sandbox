@@ -19,5 +19,6 @@ var AppEvent = {
     CLICK_BTN_SAVE: 'clickbtnsave',
     SAVE_ENTRY: 'saveentry',
     SAVING_OK: 'savingok',
-    SAVING_ERROR: 'savingerror'
+    SAVING_ERROR: 'savingerror',
+    CLICK_DELETE_ENTRY: 'clickdeleteentry'
 };

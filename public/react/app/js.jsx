@@ -15,3 +15,8 @@ AppFirebase.fetch(AppConfig.firebase.dbs.reactestDev, 'entries', function(result
         document.getElementById('react-container')
     );
 });
+var modalMountPoint = document.getElementById('react-modal-container');
+React.render(
+    <Modal mountPoint={modalMountPoint} action={null}/>,
+    modalMountPoint
+);
