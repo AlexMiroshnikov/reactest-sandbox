@@ -1,12 +1,11 @@
 var Modal = React.createClass({
-    _action: null,
     componentDidMount: function(){
-        Dispatcher.sub(AppEvent.CLICK_DELETE_ENTRY, this, function(_this, payload){
-            _this.setState({message: 'Please confirm deleting'});
-            _this._action = function(){
-                payload.delete();
-            };
-        });
+
+    },
+    confirmAction: function(action, message){
+        message = (message || 'Confirmation required');
+        this._action = action;
+        this.setState({message:message});
     },
     getInitialState: function(){
         return {message: ''};

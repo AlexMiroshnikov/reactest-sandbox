@@ -22,9 +22,9 @@ var FrmEntryNew = React.createClass({
 
         Dispatcher.sub(AppEvent.SAVING_OK, this, function(_this, payload){
             _this.props.mainobj.props.entries[_this.props.mainobj.props.entries.length] = payload;
-            /*_this.props.mainobj.forceUpdate();*/
-            _this.setState({display: false});
-            setTimeout(function(){React.findDOMNode(_this.refs['input']).value = '';}, 0);
+            _this.setState({display: false}, function(){
+                React.findDOMNode(_this.refs['input']).value = '';
+            });
         });
 
         Dispatcher.sub(AppEvent.SAVING_ERROR, this, function(_this, payload){
@@ -48,7 +48,7 @@ var FrmEntryNew = React.createClass({
     },
     handleSave(e){
         e.preventDefault();
-        ModelEntry.saveHandler(this);
+        ControllerEntry.create(this);
     },
     render: function(){
         var style = {

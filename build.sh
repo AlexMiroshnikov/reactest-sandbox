@@ -9,4 +9,6 @@ cat \
 ./public/react/app/controller/ControllerEntry.js \
 ./public/react/build/component/* \
 ./public/react/build/js.js \
-| sed -r 's/[\t\r\n]+//' | sed -r 's/ [ ]+//' | tr '\n' ' ' > ./public/react/min.js
+| sed -r 's/[\t\r\n]+//' | sed -r 's/ [ ]+//' > ./public/react/min.js
+
+#| sed -r 's/[\t\r\n]+//' | sed -r 's/ [ ]+//' | tr '\n' ' ' > ./public/react/min.js

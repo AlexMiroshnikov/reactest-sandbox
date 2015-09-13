@@ -7,20 +7,19 @@ var Entry = React.createClass({
     },
     handleClickDelete: function(e){
         e.preventDefault();
-        Dispatcher.fire(AppEvent.CLICK_DELETE_ENTRY, this.props.obj);
+        var _this = this;
+        Modal.confirmAction(function(){
+            ControllerEntry.delete(_this.props.obj);
+        }, 'Confirm deleting the message');
     },
     showEdit: function(){
         this.setState({inEdit: true}, function(){
             React.findDOMNode(this.refs.fieldEdit).focus();
-            Dispatcher.sub(AppEvent.CLICK_EDIT_ENTRY, this, function(_this, payload){
-                console.log('editing...');
-                _this.setState({inEdit:false});
-            });
         });
     },
     handleClickEdit: function(e){
         e.preventDefault();
-        Dispatcher.fire(AppEvent.CLICK_EDIT_ENTRY, this.props.obj, {breaking: true});
+        ControllerEntry.update(this.props.obj, this);
     },
     handleClickCancel: function(e){
         e.preventDefault();
