@@ -29,16 +29,37 @@ var AppFirebase = function(url){
             return _dbs[dbName];
         },
         fetch: function(dbName, fieldName, callback){
-            console.log('>fetch');
-            console.log(fetch);
-            console.log(fieldName);
-            console.log(callback);
-            console.log(' call child..');
             this.db(dbName).child(fieldName).on('value', function(snapshot){
-                console.log(' snaphot func');
                 callback(snapshot);
             });
-            console.log(' db worked out');
+        },
+        insertInc: function(dbName, tableName, obj, onFinish){
+            var _this = this,
+                refIncrements = this.db(dbName).child('increments'),
+                refObjs = this.db(dbName).child(tableName);
+
+            refIncrements.child(tableName).transaction(function(curVal){
+                return curVal;
+            }, function(error, commited, snapshot){
+                if (error){
+                    return false;
+                }
+
+                var curVal = snapshot.val(),
+                    inc = {};
+
+                inc[tableName] = curVal+1;
+                if (curVal === null) {
+                    refIncrements.set(inc);
+                } else {
+                    refIncrements.update(inc);
+                }
+
+                obj.id = inc[tableName];
+                refObjs.push(obj, function(error){
+                    onFinish && onFinish(error);
+                });
+            });
         }
     };
 }(AppConfig.firebase.url);

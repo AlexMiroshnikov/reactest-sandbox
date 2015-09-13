@@ -17,7 +17,11 @@ var ModelEntry = {
                 return _errors;
             },
             save: function(){
-                AppFirebase.db(AppConfig.firebase.dbs.reactestDevEntries).set({value: _props.value});
+                AppFirebase.insertInc(
+                    AppConfig.firebase.dbs.reactestDev,
+                    AppConfig.firebase.dbs.reactestDevEntries,
+                    {value: _props.value}
+                );
             },
             prop: function(key, value){
                 if (typeof(value) == 'undefined') {

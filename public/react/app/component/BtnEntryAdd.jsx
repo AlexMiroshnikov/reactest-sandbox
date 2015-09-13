@@ -18,7 +18,7 @@ var BtnEntryAdd = React.createClass({
         Dispatcher.fire(AppEvent.CLICK_BTN_ADD);
     },
     getInitialState: function(){
-        return {display: true};
+        return {display: false};
     },
     render: function(){
         var style = {
