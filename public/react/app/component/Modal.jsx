@@ -7,8 +7,11 @@ var Modal = React.createClass({
         this._action = action;
         this.setState({message:message});
     },
+    notify: function(message){
+        this.setState({message:message, confirmation: true});
+    },
     getInitialState: function(){
-        return {message: ''};
+        return {message: '', confirmation: false};
     },
     cancel: function(){
         this._action = null;
@@ -17,15 +20,19 @@ var Modal = React.createClass({
     proceed: function(){
         this._hide();
         this._action && this._action();
+        this._action = null;
     },
     _hide: function(){
         this.setState({message:''});
     },
     render: function(){
         this.props.mountPoint.style.display = (this.state.message ? 'block' : 'none');
+        var cancel = (
+            this.state.confirmation ? '' : (<button onClick={this.cancel}>Cancel</button>)
+        );
         return (
             <div id="component-modal-content"><p>{this.state.message}</p>
-                <div><button onClick={this.proceed}>Ok</button> <button onClick={this.cancel}>Cancel</button></div>
+                <div><button onClick={this.proceed}>Ok</button>{cancel}</div>
             </div>
         );
     }

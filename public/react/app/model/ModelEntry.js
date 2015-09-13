@@ -39,9 +39,25 @@ var ModelEntry = {
                     AppConfig.firebase.dbs.reactestDevEntries,
                     this
                 );
+            },
+            update: function(){
+                var update = {};
+                update[this.prop('uuid')] = {
+                    value: this.prop('value')
+                };
+                AppFirebase.db([
+                        AppConfig.firebase.dbs.reactestDev,
+                        AppConfig.firebase.dbs.reactestDevEntries
+                    ].join('/')
+                ).update(update);
             }
         };
     },
+
+    /**
+     * @param {ReactComponent} component
+     * @returns {boolean}
+     */
     saveHandler: function(component){
         var model = this.factory(component);
         if (model.isValid()){
