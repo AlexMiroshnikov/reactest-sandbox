@@ -2,12 +2,10 @@ AppFirebase.fetch(AppConfig.firebase.dbs.reactestDev, 'entries', function(result
     var results = result.val(),
         entries = [];
 
-    console.log('results');
-    console.log(results);
-
     for (var entryUUID in results){
         var entry = ModelEntry.factory();
-        entry.prop('value', results[entryUUID]);
+        entry.prop('value', results[entryUUID].value);
+        entry.prop('id', results[entryUUID].id);
         entry.prop('uuid', entryUUID);
         entries.push(entry);
     }
@@ -17,8 +15,3 @@ AppFirebase.fetch(AppConfig.firebase.dbs.reactestDev, 'entries', function(result
         document.getElementById('react-container')
     );
 });
-var entries = [];
-React.render(
-    <Main entries={entries}/>,
-    document.getElementById('react-container')
-);

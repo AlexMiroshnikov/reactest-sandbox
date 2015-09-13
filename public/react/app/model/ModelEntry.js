@@ -24,8 +24,8 @@ var ModelEntry = {
                 );
             },
             prop: function(key, value){
-                if (typeof(value) == 'undefined') {
-                    return _props[key];
+                  if (typeof(value) == 'undefined') {
+                      return _props[key];
                 }
                 _props[key] = value;
                 return this;
