@@ -5,7 +5,7 @@ var Entry = React.createClass({
     },
     render: function(){
         return (
-            <div><code>{this.props.obj.prop('value')}</code><a href="#" onClick={this.handleClickDelete}>&times;</a></div>
+            <li><code>{this.props.obj.prop('value')}</code><a href="#" onClick={this.handleClickDelete}>&times;</a></li>
         );
     }
 });

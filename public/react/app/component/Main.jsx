@@ -5,13 +5,13 @@ var Main = React.createClass({
         console.log(this.props.entries);
         */
         return (
-            <div>
+            <ul>
                 {this.props.entries.map(function(entry, key){
                     return <Entry obj={entry} key={key} />
                 })}
                 <FrmEntryNew mainobj={this}/>
                 <BtnEntryAdd/>
-            </div>
+            </ul>
         );
     }
 });
