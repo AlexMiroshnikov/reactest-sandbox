@@ -46,7 +46,7 @@ var FrmEntryNew = React.createClass({
     getValue: function(){
         return React.findDOMNode(this.refs['input']).value;
     },
-    handleSave(e){
+    handleSave: function(e){
         e.preventDefault();
         ControllerEntry.create(this);
     },

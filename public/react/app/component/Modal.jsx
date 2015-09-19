@@ -28,11 +28,11 @@ var Modal = React.createClass({
     render: function(){
         this.props.mountPoint.style.display = (this.state.message ? 'block' : 'none');
         var cancel = (
-            this.state.confirmation ? '' : (<button onClick={this.cancel}>Cancel</button>)
+            this.state.confirmation ? '' : (<button className="cancel" onClick={this.cancel}>Cancel</button>)
         );
         return (
             <div id="component-modal-content"><p>{this.state.message}</p>
-                <div><button onClick={this.proceed}>Ok</button>{cancel}</div>
+                <div><button className="ok" onClick={this.proceed}>Ok</button>{cancel}</div>
             </div>
         );
     }

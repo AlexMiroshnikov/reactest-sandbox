@@ -1,4 +1,7 @@
 .idea
 firebase.json
 public/react/build
+public/react/build-gulp
 public/react/min.js
+public/css
+node_modules
